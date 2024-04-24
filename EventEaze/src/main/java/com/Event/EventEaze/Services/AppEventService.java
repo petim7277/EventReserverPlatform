@@ -38,13 +38,15 @@ public class AppEventService implements EventService{
     public EventResponse removeEvent(EventRemoveRequest eventRequest) {
         ModelMapper mapper = new ModelMapper();
         EventResponse response = new EventResponse();
-        Event foundEvent  = eventRepository.findByDate(eventRequest.getEventDate());
-        if (foundEvent != null)
-            throw  new EventNotFoundException("Event already  exist") ;
+        Event foundEvent  = eventRepository.findByEventName(eventRequest.getEventName());
+        if (foundEvent == null)
+            throw  new EventNotFoundException("Event does not  exist") ;
         foundEvent = mapper.map(eventRequest, Event.class);
         eventRepository.delete(foundEvent);
         response.setMessage("Event successfully removed");
         return response;
 
     }
+
+  
 }

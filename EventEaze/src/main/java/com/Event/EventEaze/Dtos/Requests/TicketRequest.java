@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Setter
 public class TicketRequest {
       private String username;
+      
       private LocalDate purchaseDate;
       private LocalDate expirationDate;
       private String seatNumber;

@@ -2,9 +2,11 @@ package com.Event.EventEaze.Services;
 
 import com.Event.EventEaze.Data.Models.User;
 import com.Event.EventEaze.Data.Repositories.UserRepository;
+import com.Event.EventEaze.Dtos.Requests.EventRequest;
 import com.Event.EventEaze.Dtos.Requests.LoginRequest;
 import com.Event.EventEaze.Dtos.Requests.RegisterRequest;
 import com.Event.EventEaze.Dtos.Requests.TicketRequest;
+import com.Event.EventEaze.Dtos.Responses.EventResponse;
 import com.Event.EventEaze.Dtos.Responses.LoginResponse;
 import com.Event.EventEaze.Dtos.Responses.RegisterResponse;
 import com.Event.EventEaze.Dtos.TicketResponse;
@@ -51,9 +53,24 @@ public class AppUserService implements UserService {
     }
 
     @Override
-    public TicketResponse findTicket(TicketRequest ticketRequest) {
+    public TicketResponse viewTicket(TicketRequest ticketRequest) {
         return null;
     }
+
+    @Override
+    public EventResponse viewEvent(EventRequest eventRequest) {
+        return null;
+    }
+
+    @Override
+    public User findUser(String username) {
+        return userRepository.findByName(username);
+    }
+
+//    @Override
+//    public TicketResponse findTicket(TicketRequest ticketRequest) {
+//        return null;
+//    }
 
     public void validateRequest (RegisterRequest request){
 

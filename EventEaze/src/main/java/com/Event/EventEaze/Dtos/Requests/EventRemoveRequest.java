@@ -7,5 +7,5 @@ import java.time.LocalDate;
 @Setter
 @Getter
 public class EventRemoveRequest {
-    private LocalDate eventDate ;
+    private String eventName;
 }
