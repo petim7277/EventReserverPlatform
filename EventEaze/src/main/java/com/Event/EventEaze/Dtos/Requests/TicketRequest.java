@@ -8,14 +8,13 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class TicketRequest {
-      private String username;
-      
-      private LocalDate purchaseDate;
-      private LocalDate expirationDate;
-      private String seatNumber;
-      private String eventFee;
-      private Gender userGender;
-      private TicketCategory ticketCategory;
+      private String eventName;
+      private String eventDate;
+//      private LocalDate expirationDate;
+//      private String seatNumber;
+//      private String eventFee;
+//      private Gender userGender;
+//      private TicketCategory ticketCategory;
       private TicketStatus ticketStatus;
 
 }

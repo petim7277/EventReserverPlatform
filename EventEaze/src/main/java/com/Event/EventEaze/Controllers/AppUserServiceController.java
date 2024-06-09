@@ -2,10 +2,8 @@ package com.Event.EventEaze.Controllers;
 
 import com.Event.EventEaze.Dtos.Requests.LoginRequest;
 import com.Event.EventEaze.Dtos.Requests.RegisterRequest;
-import com.Event.EventEaze.Dtos.Responses.EventResponse;
 import com.Event.EventEaze.Dtos.Responses.LoginResponse;
 import com.Event.EventEaze.Dtos.Responses.RegisterResponse;
-import com.Event.EventEaze.Dtos.TicketResponse;
 import com.Event.EventEaze.Services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

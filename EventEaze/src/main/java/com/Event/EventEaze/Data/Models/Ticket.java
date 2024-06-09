@@ -17,17 +17,17 @@ public class Ticket {
     @Id
     @GeneratedValue (strategy = IDENTITY)
     private Long id;
-    private String username;
-    private LocalDateTime purchaseDate;
-    private LocalDateTime expirationDate;
+    private String eventName;
+    private String eventDate;
+    @Enumerated(EnumType.STRING)
+    private TicketStatus ticketStatus;
+    private String expirationDate;
     private String seatNumber;
     private String eventFee;
     @Enumerated(EnumType.STRING)
     private Gender userGender;
     @Enumerated(EnumType.STRING)
     private TicketCategory ticketCategory;
-    @Enumerated(EnumType.STRING)
-    private TicketStatus ticketStatus;
     @ManyToOne
     private Event  events;
 }

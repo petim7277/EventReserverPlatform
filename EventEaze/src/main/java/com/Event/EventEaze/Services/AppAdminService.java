@@ -1,29 +1,26 @@
 package com.Event.EventEaze.Services;
-
 import com.Event.EventEaze.Data.Models.Admin;
-import com.Event.EventEaze.Data.Models.Event;
-import com.Event.EventEaze.Data.Models.User;
 import com.Event.EventEaze.Data.Repositories.AdminRepository;
-import com.Event.EventEaze.Data.Repositories.EventRepository;
 import com.Event.EventEaze.Dtos.Requests.*;
 import com.Event.EventEaze.Dtos.Responses.*;
-import com.Event.EventEaze.Dtos.TicketResponse;
-import com.Event.EventEaze.Exceptions.EventNotFoundException;
 import com.Event.EventEaze.Exceptions.InvalidFieldsException;
 import com.Event.EventEaze.Exceptions.UserExistException;
 import com.Event.EventEaze.Exceptions.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static com.Event.EventEaze.Utills.Validator.*;
-
-@AllArgsConstructor
+//@AllArgsConstructor
 @Service
-public class AppAdminService implements AdminService {
-    private  final AdminRepository adminRepository;
-    private final AppEventService eventService;
-    private  final AppTicketService ticketService;
+public class AppAdminService implements AdminService{
+    @Autowired
+    private   AdminRepository adminRepository;
+    @Autowired
+    private  AppEventService eventService;
+    @Autowired
+    private  AppTicketService ticketService;
     @Override
     public RegisterResponse register(RegisterRequest registerRequest) {
         RegisterResponse response = new RegisterResponse();
@@ -62,7 +59,7 @@ public class AppAdminService implements AdminService {
 
     @Override
     public EventResponse createEvents(EventRequest eventRequest) {
-                return eventService.createEvent(eventRequest) ;
+        return eventService.createEvent(eventRequest) ;
     }
 
     @Override
@@ -72,7 +69,7 @@ public class AppAdminService implements AdminService {
 
     @Override
     public TicketReservationResponse reserveTicket(TicketReservationRequest ticketRequest) {
-        
+
         return null;
     }
 
@@ -97,3 +94,4 @@ public class AppAdminService implements AdminService {
 
     }
 }
+

@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface EventService {
     Optional<Event> findEvent(Long id);
+
     EventResponse createEvent (EventRequest eventRequest);
     EventResponse removeEvent (EventRemoveRequest eventRequest);
 }

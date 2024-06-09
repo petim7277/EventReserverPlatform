@@ -1,19 +1,17 @@
 package com.Event.EventEaze.Services;
-
+import com.Event.EventEaze.Data.Models.Event;
 import com.Event.EventEaze.Data.Models.Ticket;
 import com.Event.EventEaze.Data.Models.TicketStatus;
-import com.Event.EventEaze.Data.Models.User;
+import com.Event.EventEaze.Data.Repositories.EventRepository;
 import com.Event.EventEaze.Data.Repositories.TicketRepository;
 import com.Event.EventEaze.Dtos.Requests.TicketRemoveRequest;
 import com.Event.EventEaze.Dtos.Requests.TicketRequest;
 import com.Event.EventEaze.Dtos.Requests.TicketReservationRequest;
 import com.Event.EventEaze.Dtos.Responses.TicketReservationResponse;
-import com.Event.EventEaze.Dtos.TicketResponse;
-//import com.Event.EventEaze.Exceptions.EventNotFoundException;
+import com.Event.EventEaze.Dtos.Responses.TicketResponse;
+import com.Event.EventEaze.Exceptions.EventNotFoundException;
 import com.Event.EventEaze.Exceptions.TicketNotFoundException;
-//import com.Event.EventEaze.Exceptions.TicketStatusEception;
 import com.Event.EventEaze.Exceptions.TicketStatusException;
-import com.Event.EventEaze.Exceptions.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -24,12 +22,20 @@ import java.util.Optional;
 @Service
 public class AppTicketService  implements  TicketService{
     private final TicketRepository ticketRepository;
+    private final EventRepository eventRepository;
     private  final  EventService eventService;
     private  final UserService userService;
+
     @Override
     public TicketResponse createTicket(TicketRequest ticketRequest) {
         TicketResponse response = new TicketResponse();
-        checkTicketDetails(ticketRequest);
+        ModelMapper mapper = new ModelMapper();
+        Event foundEvent = eventRepository.findByEventName(ticketRequest.getEventName()) ;
+        if (foundEvent == null){throw  new EventNotFoundException("Event Does not exist");}
+        ticketRequest.setTicketStatus(TicketStatus.CONFIRMED);
+        if (ticketRequest.getTicketStatus() != TicketStatus.CONFIRMED) {throw  new TicketStatusException("Ticket status does not match") ;}
+        Ticket createdTicket = mapper.map(ticketRequest, Ticket.class);
+        ticketRepository.save(createdTicket) ;
         response.setMessage("Ticket successfully created");
         return response;
     }
@@ -44,8 +50,8 @@ public class AppTicketService  implements  TicketService{
     public TicketResponse removeTicket(TicketRemoveRequest ticketRequest) {
         ModelMapper mapper = new ModelMapper();
         TicketResponse response = new TicketResponse();
-        Ticket foundTicket  = ticketRepository.findTicketByPurchaseDate
-                (ticketRequest.getPurchaseDate().atStartOfDay());
+        Ticket foundTicket  = ticketRepository.findTicketByEventDate
+                (String.valueOf(ticketRequest.getPurchaseDate().atStartOfDay()));
         if (foundTicket != null)
             throw  new TicketNotFoundException("Ticket already  exist") ;
         foundTicket = mapper.map(ticketRequest, Ticket.class);
@@ -72,18 +78,5 @@ public class AppTicketService  implements  TicketService{
         return response;
     }
 
-    public void checkTicketDetails(TicketRequest ticketRequest){
-        ModelMapper mapper = new ModelMapper();
-        TicketResponse response = new TicketResponse();
-        User foundUser =  userService.findUser(ticketRequest.getUsername());
-        if (foundUser == null)
-            throw  new UserNotFoundException("User does not exist");
-        Ticket foundTicket  = ticketRepository.findTicketByPurchaseDate
-                (ticketRequest.getPurchaseDate().atStartOfDay());
-        if (foundTicket != null)
-            throw  new TicketNotFoundException("Ticket already  exist") ;
-        foundTicket = mapper.map(ticketRequest, Ticket.class);
-        if (ticketRequest.getTicketStatus().equals(TicketStatus.CONFIRMED)) {
-            ticketRepository.save(foundTicket);  }
-    }
+
 }

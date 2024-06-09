@@ -9,7 +9,7 @@ import com.Event.EventEaze.Dtos.Requests.TicketRequest;
 import com.Event.EventEaze.Dtos.Responses.EventResponse;
 import com.Event.EventEaze.Dtos.Responses.LoginResponse;
 import com.Event.EventEaze.Dtos.Responses.RegisterResponse;
-import com.Event.EventEaze.Dtos.TicketResponse;
+import com.Event.EventEaze.Dtos.Responses.TicketResponse;
 import com.Event.EventEaze.Exceptions.InvalidFieldsException;
 import com.Event.EventEaze.Exceptions.UserExistException;
 import com.Event.EventEaze.Exceptions.UserNotFoundException;
@@ -57,20 +57,19 @@ public class AppUserService implements UserService {
         return null;
     }
 
+
     @Override
-    public EventResponse viewEvent(EventRequest eventRequest) {
+    public EventResponse viewReservations(EventRequest eventRequest) {
         return null;
     }
+
+
 
     @Override
     public User findUser(String username) {
         return userRepository.findByName(username);
     }
 
-//    @Override
-//    public TicketResponse findTicket(TicketRequest ticketRequest) {
-//        return null;
-//    }
 
     public void validateRequest (RegisterRequest request){
 

@@ -1,4 +1,4 @@
-package com.Event.EventEaze.Dtos;
+package com.Event.EventEaze.Dtos.Responses;
 import lombok.Getter;
 import lombok.Setter;
 @Getter

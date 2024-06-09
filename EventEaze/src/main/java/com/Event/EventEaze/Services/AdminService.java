@@ -4,7 +4,7 @@ import com.Event.EventEaze.Dtos.Responses.EventResponse;
 import com.Event.EventEaze.Dtos.Responses.LoginResponse;
 import com.Event.EventEaze.Dtos.Responses.RegisterResponse;
 import com.Event.EventEaze.Dtos.Responses.TicketReservationResponse;
-import com.Event.EventEaze.Dtos.TicketResponse;
+import com.Event.EventEaze.Dtos.Responses.TicketResponse;
 
 public interface AdminService {
     RegisterResponse register(RegisterRequest registerRequest);
