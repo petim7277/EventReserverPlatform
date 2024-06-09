@@ -1,6 +1,4 @@
-#FROM ubuntu:latest
-#LABEL authors="Dell"
-FROM maven:3.9.5-openjdk-21  AS build
+FROM maven:3.9.6-openjdk-21  AS build
 COPY . .
 RUN mvn clean package -DdskipTests
 FROM openjdk:21-jdk
