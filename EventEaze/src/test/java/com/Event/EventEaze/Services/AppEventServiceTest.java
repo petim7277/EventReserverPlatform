@@ -17,11 +17,11 @@ class AppEventServiceTest {
      private EventService  eventService;
      @Autowired
      private EventRepository eventRepository;
-//    String name = "Precious is a Big Fish";
+
   @Test
   public void createEventTest(){
       EventRequest eventRequest = new EventRequest();
-      eventRequest.setEventName("Conference");
+      eventRequest.setEventName("Innovation");
       eventRequest.setEventVenue("312 herbert macaulay sabo yaba lagos");
       eventRequest.setEventDescription("Semicolon in collaboration with Interswitch");
       eventRequest.setEventDate(LocalDate.of(2024,5,15));
@@ -29,14 +29,14 @@ class AppEventServiceTest {
       EventResponse response = eventService.createEvent(eventRequest);
       assertNotNull(response);
       System.out.println(response.toString());
-      assertEquals(2,eventRepository.count());
+      assertEquals(3,eventRepository.count());
 
   }
 
      @Test
      public void createEventAgainTest(){
          EventRequest eventRequest = new EventRequest();
-         eventRequest.setEventName("MetGala");
+         eventRequest.setEventName("Rendezvous");
          eventRequest.setEventVenue("312 herbert macaulay way New Jersey");
          eventRequest.setEventDescription("AfricanTalents in collaboration with Interswitch");
          eventRequest.setEventDate(LocalDate.of(2024,6,15));
@@ -44,9 +44,11 @@ class AppEventServiceTest {
          EventResponse response = eventService.createEvent(eventRequest);
          assertNotNull(response);
          System.out.println(response.toString());
-         assertEquals(3,eventRepository.count());
+         assertEquals(4,eventRepository.count());
 
      }
+
+
      @Test
      public void removeEventTest(){
          EventRemoveRequest eventRequest = new EventRemoveRequest();

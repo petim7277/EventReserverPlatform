@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TicketReservationRequest {
-    private TicketStatus ticketStatus;
+    private String eventName;
     private String username;
     private Gender gender;
 }

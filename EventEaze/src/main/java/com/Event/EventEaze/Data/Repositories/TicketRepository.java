@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 
 public interface TicketRepository extends JpaRepository <Ticket,Long> {
-    Ticket findTicketByEventDate(String eventDate);
-    Ticket findTicketByTicketStatus(TicketStatus ticketStatus);
+    Ticket findTicketByEventName(String eventName);
+
     
 }

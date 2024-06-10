@@ -32,8 +32,6 @@ public class AppTicketService  implements  TicketService{
         ModelMapper mapper = new ModelMapper();
         Event foundEvent = eventRepository.findByEventName(ticketRequest.getEventName()) ;
         if (foundEvent == null){throw  new EventNotFoundException("Event Does not exist");}
-        ticketRequest.setTicketStatus(TicketStatus.CONFIRMED);
-        if (ticketRequest.getTicketStatus() != TicketStatus.CONFIRMED) {throw  new TicketStatusException("Ticket status does not match") ;}
         Ticket createdTicket = mapper.map(ticketRequest, Ticket.class);
         ticketRepository.save(createdTicket) ;
         response.setMessage("Ticket successfully created");
@@ -50,13 +48,11 @@ public class AppTicketService  implements  TicketService{
     public TicketResponse removeTicket(TicketRemoveRequest ticketRequest) {
         ModelMapper mapper = new ModelMapper();
         TicketResponse response = new TicketResponse();
-        Ticket foundTicket  = ticketRepository.findTicketByEventDate
-                (String.valueOf(ticketRequest.getPurchaseDate().atStartOfDay()));
-        if (foundTicket != null)
-            throw  new TicketNotFoundException("Ticket already  exist") ;
+        Ticket foundTicket  = ticketRepository.findTicketByEventName(ticketRequest.getEventName()) ;
+        if (foundTicket == null)
+            throw  new TicketNotFoundException("Ticket does not  exist") ;
         foundTicket = mapper.map(ticketRequest, Ticket.class);
-        if (ticketRequest.getTicketStatus().equals(TicketStatus.CANCELLED)){
-        ticketRepository.delete(foundTicket);   }
+        ticketRepository.delete(foundTicket);   
         response.setMessage("Ticket successfully removed");
         return response;
 
@@ -66,14 +62,11 @@ public class AppTicketService  implements  TicketService{
     public TicketReservationResponse reserveTicket(TicketReservationRequest ticketRequest) {
         ModelMapper mapper  = new ModelMapper();
         TicketReservationResponse response = new TicketReservationResponse();
-        Ticket foundTicket = ticketRepository.findTicketByTicketStatus(ticketRequest.getTicketStatus());
+        Ticket foundTicket = ticketRepository.findTicketByEventName(ticketRequest.getEventName());
         if (foundTicket == null)
             throw  new TicketNotFoundException("Ticket does not exist") ;
         foundTicket = mapper.map(ticketRequest,Ticket.class);
-        if (ticketRequest.getTicketStatus().equals(TicketStatus.PENDING)) {
             ticketRepository.save(foundTicket) ;
-        }
-        else throw new TicketStatusException("Ticket status is invalid");
         response.setResponse("Ticket reservation successful");
         return response;
     }

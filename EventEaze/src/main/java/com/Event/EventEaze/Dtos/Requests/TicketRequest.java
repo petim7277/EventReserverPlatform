@@ -10,11 +10,6 @@ import java.time.LocalDate;
 public class TicketRequest {
       private String eventName;
       private String eventDate;
-//      private LocalDate expirationDate;
-//      private String seatNumber;
-//      private String eventFee;
-//      private Gender userGender;
-//      private TicketCategory ticketCategory;
-      private TicketStatus ticketStatus;
+
 
 }

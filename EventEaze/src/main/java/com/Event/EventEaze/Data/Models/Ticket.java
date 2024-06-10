@@ -19,15 +19,5 @@ public class Ticket {
     private Long id;
     private String eventName;
     private String eventDate;
-    @Enumerated(EnumType.STRING)
-    private TicketStatus ticketStatus;
-    private String expirationDate;
-    private String seatNumber;
-    private String eventFee;
-    @Enumerated(EnumType.STRING)
-    private Gender userGender;
-    @Enumerated(EnumType.STRING)
-    private TicketCategory ticketCategory;
-    @ManyToOne
-    private Event  events;
+    
 }

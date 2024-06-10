@@ -25,7 +25,7 @@ public class AppEventService implements EventService{
     public EventResponse createEvent(EventRequest eventRequest) {
         ModelMapper mapper = new ModelMapper();
         EventResponse response = new EventResponse();
-        Event foundEvent  = eventRepository.findByDate(eventRequest.getEventDate());
+        Event foundEvent  = eventRepository.findByEventName(eventRequest.getEventName());
         if (foundEvent != null)
             throw  new EventNotFoundException("Event already  exist") ;
         foundEvent = mapper.map(eventRequest, Event.class);
