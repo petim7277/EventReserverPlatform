@@ -38,8 +38,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t petim7277/EventEaze:latest .
+        run: docker build -t petim7277/eventeaze:latest .
 
       - name: Push Docker image to Docker Hub
-        run: docker push petim7277/EventEaze:latest
+        run: docker push petim7277/eventeaze:latest
 
