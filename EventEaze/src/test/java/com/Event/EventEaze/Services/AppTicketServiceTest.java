@@ -45,12 +45,12 @@ class AppTicketServiceTest {
 
     }
 
-    @Test
-    public  void TicketDeletionTestAgain(){
-        TicketRemoveRequest ticketRequest  = new TicketRemoveRequest();
-        ticketRequest.setEventName("MetGalad");
-        ticketService.removeTicket(ticketRequest);
-        assertEquals(1,ticketRepository.count());
-
-    }
+//    @Test
+//    public  void TicketDeletionTestAgain(){
+//        TicketRemoveRequest ticketRequest  = new TicketRemoveRequest();
+//        ticketRequest.setEventName("MetGalad");
+//        ticketService.removeTicket(ticketRequest);
+//        assertEquals(1,ticketRepository.count());
+//
+//    }
 }

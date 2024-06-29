@@ -19,7 +19,7 @@
 		reservations, and receive notifications before the event starts. The project
 		is built with Spring Boot and includes unit tests for robustness.</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
